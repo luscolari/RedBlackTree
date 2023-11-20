@@ -31,16 +31,19 @@ public class RedBlackTree {
         blackHeight = 0;
     }
 
-    /**
-     *
-     * Metodo privado que procura por elemento a partir de target
-     * e retorna a referencia para o nodo no qual element está
-     * armazenado.
-     * @param element
-     * @param target
-     * @return target caso o elemento dado no parameto for o mesmo do target,
-     * retorna aux caso contrário, que percorre o lado esquerdo e se não estiver lá, percorre o direito.
-     */
+  /**
+ * 
+ *Procura o elemento oferecido por parâmetro a partir do nó de destino e retorna a referência
+ * para o nó no qual o elemento está armazenado na árvore.
+ *
+ * @param element O elemento a ser procurado na árvore.
+ * @param target O nó de partida para a busca.
+ * @return Retorna o próprio nó de destino se o elemento fornecido for igual ao
+ *         elemento armazenado no nó de destino. Caso contrário, retorna o nó auxiliar,
+ *         que percorre o lado esquerdo se o elemento não estiver lá, e percorre o lado
+ *         direito se não estiver no lado esquerdo.
+ */
+
     private Node searchNodeRef(Integer element, Node target) {
         if (element != null) {
             if (target.element.equals(element))
@@ -53,11 +56,13 @@ public class RedBlackTree {
         return null;
     }
 
-    /**
-     * Retorna quem é o elemento pai do elemento passado por parametro.
-     * @param element
-     * @return o elemento do pai do elemento passado.
-     */
+   /**
+ * Retorna o elemento pai do elemento fornecido como parâmetro na árvore.
+ *
+ * @param element O elemento cujo pai está sendo buscado na árvore.
+ * @return O elemento que é o pai do elemento passado como parâmetro.
+ */
+
     public Integer getParent(Integer element) {
         Node n = this.searchNodeRef(element, root);
         if (n == null) {
@@ -72,7 +77,7 @@ public class RedBlackTree {
     /**
      * Altera o elemento da raiz da arvore.
      *
-     * @param element a ser colocado na raiz da arvore.
+     * @param element O elemento a ser alterado na raiz da arvore.
      */
     public void setRoot(Integer element) {
         if (root != null)
@@ -86,7 +91,7 @@ public class RedBlackTree {
     /**
      * Adicione um elemento na raíz, caso esta não esteja nula.
      *
-     * @param element
+     * @param element O elemento a ser adicionado como raíz
      * @return true se for possível inserir.
      */
     public boolean addRoot(Integer element) {
@@ -97,6 +102,16 @@ public class RedBlackTree {
         count++;
         return true;
     }
+
+    /**
+ * Adiciona um novo elemento como filho à esquerda do elemento pai fornecido na árvore.
+ * 
+ * @param element  O elemento a ser adicionado como filho à esquerda.
+ * @param elementFather O elemento pai ao qual será adicionado um filho à esquerda.
+ * @return true se o elemento foi adicionado com sucesso como filho à esquerda do elemento pai,
+ *         false se não foi possível adicionar (por exemplo, se o elemento pai não existe,
+ *         já possui um filho à esquerda ou se o elemento pai é nulo).
+ */
 
     public boolean addLeft(Integer element, Integer elementFather) {
         Node aux = searchNodeRef(elementFather, root);
@@ -112,6 +127,16 @@ public class RedBlackTree {
         count++;
         return true;
     }
+
+    /**
+ * Adiciona um novo elemento como filho à direita do elemento pai fornecido na árvore.
+ *
+ * @param element      O elemento a ser adicionado como filho à direita.
+ * @param elementFather O elemento pai ao qual será adicionado um filho à direita.
+ * @return true se o elemento foi adicionado com sucesso como filho à direita do elemento pai,
+ *         false se não foi possível adicionar (por exemplo, se o elemento pai não existe,
+ *         já possui um filho à direita ou se o elemento pai é nulo).
+ */
 
     public boolean addRight(Integer element, Integer elementFather) {
         Node aux = searchNodeRef(elementFather, root);
@@ -143,7 +168,7 @@ public class RedBlackTree {
     /**
      * Retorna o total de elementos da árvore.
      *
-     * @return total de elementos
+     * @return count
      */
     public int size() {
         return count;
