@@ -84,74 +84,13 @@ public class RedBlackTree {
             root.element = element;
     }
 
-    public void add(Integer element) {
 
-    }
-
-    /**
-     * Adicione um elemento na raíz, caso esta não esteja nula.
-     *
-     * @param element O elemento a ser adicionado como raíz
-     * @return true se for possível inserir.
-     */
-    public boolean addRoot(Integer element) {
-        if (root != null) {
-            return false;
-        }
-        root = new Node(element);
-        count++;
-        return true;
-    }
-
-    /**
- * Adiciona um novo elemento como filho à esquerda do elemento pai fornecido na árvore.
- * 
- * @param element  O elemento a ser adicionado como filho à esquerda.
- * @param elementFather O elemento pai ao qual será adicionado um filho à esquerda.
- * @return true se o elemento foi adicionado com sucesso como filho à esquerda do elemento pai,
- *         false se não foi possível adicionar (por exemplo, se o elemento pai não existe,
- *         já possui um filho à esquerda ou se o elemento pai é nulo).
- */
-
-    public boolean addLeft(Integer element, Integer elementFather) {
-        Node aux = searchNodeRef(elementFather, root);
-        if (aux == null)
-            return false;
-        if (aux.father == null && aux != root)
-            return false;
-        if (aux.left != null)
-            return false;
-        Node n = new Node(element);
-        aux.left = n;
-        n.father = aux;
-        count++;
-        return true;
-    }
-
-    /**
- * Adiciona um novo elemento como filho à direita do elemento pai fornecido na árvore.
+/**
+ * Adiciona um novo elemento
  *
- * @param element      O elemento a ser adicionado como filho à direita.
- * @param elementFather O elemento pai ao qual será adicionado um filho à direita.
- * @return true se o elemento foi adicionado com sucesso como filho à direita do elemento pai,
- *         false se não foi possível adicionar (por exemplo, se o elemento pai não existe,
- *         já possui um filho à direita ou se o elemento pai é nulo).
+ * @param element o elemento a ser adicionado na árvore.
  */
-
-    public boolean addRight(Integer element, Integer elementFather) {
-        Node aux = searchNodeRef(elementFather, root);
-        if (aux == null)
-            return false;
-        if (aux.father == null && aux != root)
-            return false;
-        if (aux.right != null)
-            return false;
-        Node n = new Node(element);
-        aux.right = n;
-        n.father = aux;
-        count++;
-        return true;
-    }
+    public void add(Integer element)
     public int height() {
         return 0;
     }
