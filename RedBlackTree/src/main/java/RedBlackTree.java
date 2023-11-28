@@ -112,6 +112,74 @@ public class RedBlackTree {
     public int size() {
         return count;
     }
+
+     private void GeraDOT(Node node) {
+        if (node != null) {
+            if (node.left != null) {
+                System.out.println(node.element + " -> " + node.left.element);
+            }
+            if (node.right != null) {
+                System.out.println(node.element + " -> " + node.right.element);
+            }
+            GeraDOT(node.left);
+            GeraDOT(node.right);
+        }
+    }
+
+
+
+    private void GeraConexoesDOT(Node nodo) {
+        if (nodo == null) {
+            return;
+        }
+
+        GeraConexoesDOT(nodo.left);
+        //   "nodeA":esq -> "nodeB" [color="0.650 0.700 0.700"]
+        if (nodo.left != null) {
+            System.out.println("\"node" + nodo.element + "\":esq -> \"node" + nodo.left.element + "\" " + "\n");
+        }
+
+        GeraConexoesDOT(nodo.right);
+        //   "nodeA":dir -> "nodeB";
+        if (nodo.right != null) {
+            System.out.println("\"node" + nodo.element + "\":dir -> \"node" + nodo.right.element + "\" " + "\n");
+        }
+        //"[label = " << nodo->hDir << "]" <<endl;
+    }
+
+    private void GeraNodosDOT(Node nodo) {
+        if (nodo == null) {
+            return;
+        }
+        GeraNodosDOT(nodo.left);
+        //node10[label = "<esq> | 10 | <dir> "];
+        System.out.println("node" + nodo.element + "[label = \"<esq> | " + nodo.element + " | <dir> \"]" + "\n");
+        GeraNodosDOT(nodo.right);
+    }
+
+    public void GeraConexoesDOT() {
+        GeraConexoesDOT(root);
+    }
+
+    public void GeraNodosDOT() {
+        GeraNodosDOT(root);
+    }
+
+    // Gera uma saida no formato DOT
+    // Esta saida pode ser visualizada no GraphViz
+    // Versoes online do GraphViz pode ser encontradas em
+    // http://www.webgraphviz.com/
+    // http://viz-js.com/
+    // https://dreampuf.github.io/GraphvizOnline 
+    public void GeraDOT() {
+        System.out.println("digraph g { \nnode [shape = record,height=.1];\n" + "\n");
+
+        GeraNodosDOT();
+        System.out.println("");
+        GeraConexoesDOT(root);
+        System.out.println("}" + "\n");
+    }
+    
     }
     //Retornar os elementos da árvore em uma lista usando (pelo menos) dois diferentes caminhamentos:
     //positionsPre, positionsCentral, positionsPos e positionsWidth;
